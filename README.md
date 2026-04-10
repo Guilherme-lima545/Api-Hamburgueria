@@ -40,10 +40,10 @@ Antes de começar, certifique-se de ter instalado:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/Guilherme-lima545/nome-da-api.git
+git clone https://github.com/Guilherme-lima545/Api-Hamburgueria.git
 
 # Acesse a pasta do projeto
-cd nome-da-api
+cd Api-Hamburgueria
 
 # Instale as dependências
 npm install
@@ -123,15 +123,16 @@ Base URL: `/api/produtos`
 
 ```
 ├── src/
-│   ├── controllers.js            # Lógica das rotas
-│   ├── app.js                    # Lógica das rotas
-│   ├── routes/                   # Definição dos endpoints
-│   ├── orders.js / produtos.js   # endpoints
-│   ├── db/connection.js          # Consultas ao banco de dados
+│   ├── app.js
+│   ├── controllers/
+│   │   ├── produtosController.js
+│   │   └── ordersController.js
+│   ├── routes/
+│   │   ├── produtos.js
+│   │   └── orders.js
+│   └── db/
+│       └── connection.js
 ├── database.sql
-├── .gitignore
-├── package.json
-└── README.md
 ```
 
 ---
