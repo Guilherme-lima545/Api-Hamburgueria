@@ -1,6 +1,7 @@
 import express from 'express';
-import db from '../db/connection';
-import router from './produtos';
+import db from '../db/connection.js';
+
+const router = express.Router();
 
 router.post('/', async (req, res) => {
   const { items } = req.body;
@@ -17,8 +18,8 @@ router.post('/', async (req, res) => {
     );
 
     const total = items.reduce((sum, item) => {
-      const produtos = produtos.find((p) => p.id === item.produtoid);
-      return sum + produtos.preco * item.quantidade;
+      const produto = produtos.find((p) => p.id === item.produtoid);
+      return sum + produto.preco * item.quantidade;
     }, 0);
 
     const [resultado] = await conn.query(
@@ -54,7 +55,8 @@ router.get('/', async (req, res) => {
       `SELECT oi.quantity, p.name, p.price
        FROM order_items oi
        JOIN products p ON p.id = oi.product_id
-       WHERE oi.order_id = ?`[ordem.id],
+       WHERE oi.order_id = ?`,
+       [ordem.id],
     );
     ordem.items = items;
   }

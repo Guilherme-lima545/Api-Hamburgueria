@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 
 router.get('/categoria/:cat', async (req, res) => {
   const [rows] = await db.query(
-    'SELECT * FROM Produtos WHERE categoria = ? AND disponivel = 0',
+    'SELECT * FROM Produtos WHERE categoria = ? AND disponivel = 1',
     [req.params.cat],
   );
   res.json(rows);
@@ -28,11 +28,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const { name, descricao, preco, disponivel } = req.body;
+  const { nome, descricao, preco, disponivel } = req.body;
 
   await db.query(
     'UPDATE Produtos SET nome=?, descricao=?, preco=?, disponivel=? WHERE id=?'[
-      (nome, descricao, preco, disponivel, req.params.id)
+      [nome, descricao, preco, disponivel, req.params.id]
     ],
   );
 
