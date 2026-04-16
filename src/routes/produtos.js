@@ -31,9 +31,8 @@ router.put('/:id', async (req, res) => {
   const { nome, descricao, preco, disponivel } = req.body;
 
   await db.query(
-    'UPDATE Produtos SET nome=?, descricao=?, preco=?, disponivel=? WHERE id=?'[
-      [nome, descricao, preco, disponivel, req.params.id]
-    ],
+    'UPDATE Produtos SET nome=?, descricao=?, preco=?, disponivel=? WHERE id=?',
+     [nome, descricao, preco, disponivel, req.params.id]
   );
 
   res.json({ message: 'Produto atualizado' });
