@@ -1,6 +1,6 @@
 -- ===========================================
 -- Banco de Dados da Hamburgueria
--- Atualizado no dia 10/04/2026 14:50
+-- Atualizado no dia 09/07/2026 14:50
 -- ===========================================
 CREATE DATABASE IF NOT EXISTS hamburgueria;
 
