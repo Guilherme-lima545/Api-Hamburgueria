@@ -4,13 +4,13 @@ import db from '../db/connection.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const [rows] = await db.query('SELECT * FROM Produtos');
+  const [rows] = await db.query('SELECT * FROM produtos');
   res.json(rows);
 });
 
 router.get('/categoria/:cat', async (req, res) => {
   const [rows] = await db.query(
-    'SELECT * FROM Produtos WHERE categoria = ? AND disponivel = 1',
+    'SELECT * FROM produtos WHERE categoria = ? AND disponivel = 1',
     [req.params.cat],
   );
   res.json(rows);
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
   const { nome, descricao, preco, categoria } = req.body;
 
   const [resultado] = await db.query(
-    'INSERT INTO Produtos (nome, descricao, preco, categoria) VALUES (?, ?, ?, ?)',
+    'INSERT INTO produtos (nome, descricao, preco, categoria) VALUES (?, ?, ?, ?)',
     [nome, descricao, preco, categoria],
   );
 
@@ -31,7 +31,7 @@ router.put('/:id', async (req, res) => {
   const { nome, descricao, preco, disponivel } = req.body;
 
   await db.query(
-    'UPDATE Produtos SET nome=?, descricao=?, preco=?, disponivel=? WHERE id=?',
+    'UPDATE produtos SET nome=?, descricao=?, preco=?, disponivel=? WHERE id=?',
      [nome, descricao, preco, disponivel, req.params.id]
   );
 
@@ -39,7 +39,7 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  await db.query('DELETE FROM Produtos WHERE id = ?', [req.params.id]);
+  await db.query('DELETE FROM produtos WHERE id = ?', [req.params.id]);
   res.json({ message: 'Produto removido' });
 });
 
