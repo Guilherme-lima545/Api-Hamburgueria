@@ -11,13 +11,6 @@ const __dirname = path.dirname(__filename);
 
 const caPath = path.join(__dirname, 'ca.pem');
 
-if (!fs.existsSync(caPath)) {
-    console.error("❌ ERRO CRÍTICO: O arquivo ca.pem não foi encontrado em:", caPath);
-    console.error("Verifique se o arquivo não está vazio ou com nome errado (ex: ca.pem.txt)");
-    process.exit(1);
-} else {
-    console.log("✅ Arquivo ca.pem encontrado com sucesso em:", caPath);
-}
 
 const caCert = fs.readFileSync(caPath, 'utf-8');
 
